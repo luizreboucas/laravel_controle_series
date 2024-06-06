@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SeriesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/series");
 });
 
-Route::get('/ola', function () {
-    return json_encode([
-        'message' => 'olá mundo'
-    ]);
-});
+Route::resource('/series', SeriesController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
